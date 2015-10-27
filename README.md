@@ -1,7 +1,7 @@
 IOT Dashboard Admin for Insight
 ==================
 
-GET STARTED:
+Deploy the application:
 
 1. Register to Bluemix:
     https://console.ng.bluemix.net
