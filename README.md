@@ -10,17 +10,8 @@ GET STARTED:
 3. Download this project from Git
 4. Unzipp this project
 5. Open the command line and go to the project folder you just unzipped (cd "location")
-6. Edit the manifest.yml file with the application that you have created in Bluemix. If your application's name is 'dashboardIoT-Name', then modify it as follows
-applications:
+6. Edit the manifest.yml file with the application that you have created in Bluemix. Modify the name and the host with the name you gave to your Bluemix application
 
-- disk_quota: 1024M
-  host: dashboardIoT-Name
-  name: dashboardIoT-Name
-  command: node app.js
-  path: .
-  domain: mybluemix.net
-  instances: 1
-  memory: 128M
 
 7. Connect to Bluemix from the command line:
 
