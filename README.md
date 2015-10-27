@@ -1,141 +1,101 @@
-IOT Visualization:
+IOT Dashboard Admin for Insight
 ==================
 
- Please refer to the [recipe] for running the application.
+GET STARTED:
 
- This is a stand alone web app written on top of [node.js] to visualize IOT data.Additionally it uses the following frameworks.
-
-
-
- [express] :  Server side routing
-
- [JQuery] :  UI and REST calls
-
- [Rickshaw]  : Visualisation of data
-
- [MQTT paho client] : Subscribing to the IBM Internet of Things(IOT) Cloud 
-using mqtt protocol and receiving messages from registered devices from 
-IBM IOT Cloud.
-
-### Visualization in the application: 
-
-
- This page uses the  [Rickshaw] charting library to visualize real time and historical data.
-
-
-#### Historical data: 
-
-   The components for the historical data visualization are placed in the files historian.js and historianGraph.js in this folder.
-
-        iot-visualization\public\js\historian\
+1. Register to Bluemix:
+    https://console.ng.bluemix.net
     
-        \historian.js
-    
-        \historianGraph.js
+2. Create a new Javascript web app on Bluemix, give it a unique name. (Create App -> Web application -> Javascript runtime)
+3. Download this project from Git
+4. Unzipp this project
+5. Open the command line and go to the project folder you just unzipped (cd "location")
+6. Edit the manifest.yml file with the application that you have created in Bluemix. If your application's name is 'dashboardIoT-Name', then modify it as follows
+applications:
 
+- disk_quota: 1024M
+  host: dashboardIoT-Name
+  name: dashboardIoT-Name
+  command: node app.js
+  path: .
+  domain: mybluemix.net
+  instances: 1
+  memory: 128M
 
+7. Connect to Bluemix from the command line:
+
+    cf api https://api.ng.bluemix.net
+
+8. Log into Bluemix:
+
+    cf login 
+
+9. Deploy your app:
+
+    cf push <your bluemix-application-name>
+
+10. Access your app: <your bluemix-application-name>.mybluemix.net
  
 
- *historianGraph.js*: This file contains the graph and it's related function.
 
-
-
- *Change the color of the graph*: In the below section of code you can change the hexadecimal codes to change the color of the graph data.
-    
-        this.palette = new Rickshaw.Color.Palette( { scheme: [
-          "#7f1c7d",
-          "#00b2ef",
-          "#00649d",
-          "#00a6a0",
-          "#ee3e96"
-          ] } );
-
-
- The function drawGraph(seriesData) is called from historian.js when we receive device data from IBM IOT Cloud.It instantiates the graph for the first time and set te renderer , hover details , x-axis and y-axis formatting.
-
-        this.drawGraph = function(seriesData) 
-
-
- This instantiates the graph and set the intial renderer to line.
-
-        this.graph = new Rickshaw.Graph( {
-            element: document.getElementById("chart"),
-          width: 900,
-          height: 500,
-          renderer: 'line',
-          stroke: true,
-          preserve: true,
-          series: seriesData  
-        } );
-
-
-
- This defines the time fixture(e.g. year, month, day, hour) and the formatting of each) for the x-axis. 
-
-        this.xAxis = new Rickshaw.Graph.Axis.Time( {
-          graph: this.graph,
-          ticksTreatment: this.ticksTreatment,
-          timeFixture: new Rickshaw.Fixtures.Time.Local()
-        } );
-
-
-
- This defines the number formatting for y axis.
-
-    this.yAxis = new Rickshaw.Graph.Axis.Y( {
-      graph: this.graph,
-      tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-      ticksTreatment: this.ticksTreatment
-    } );
-
-
-
- This function gets called from historian.js and create the array which is used to plot the graph.
-
-        this.displayHistChart = function(device,data)
-
-
- *historian.js* : This file intializes the graph and makes REST API calls to get the historian data. 
-
-
-
-        this.initialize = function() {
-        historianGraph = new HistorianGraph();
-      }
-
-
- The function  this.plotHistoricGraph handles the ui control selections and 
-make the REST call to get the historical data
-
-        this.plotHistoricGraph 
-
+==================
+How to customize the app:
 
 #### Realtime data: 
 
    The components for the realtime data visualization are placed in the files realtime.js and realtimeGraph.js in this folder.
 
-        iot-visualization\public\js\realtime\
+        public\js\realtime\
     
         \realtime.js
     
         \realtimeGraph.js
 
+*realtimeGraph.js*: This file contains the graph and it's related functions.This is written in the same style as historianGraph.js above.So you can follow the guidelines for historianGraph.js to customize the code.
 
- 
-
- *realtimeGraph.js*: This file contains the graph and it's related functions.This is written in the same style as historianGraph.js above.So you can follow the guidelines for historianGraph.js to customize the code.
-
+*realtime.js* : This file intializes the graph and subscribes to the mqtt topics to get realtime device data from IBM IOT cloud.
 
 
- *realtime.js* : This file intializes the graph and subscribes to the mqtt topics to get realtime device data from IBM IOT cloud.
+ *Change the color of the graph*: In the below section of code you can change the hexadecimal codes to change the color of the graph data.
+    
+        var palette = new Rickshaw.Color.Palette( { scheme: [
+                "#7f1c7d",
+                "#00b2ef",
+                "#00649d",
+                "#00a6a0",
+                "#ee3e96",
+                "#FF6600",
+                "#33CC33",
+                "#996633",
+                "#00FFFF",
+                "#FFFF00",
+                "#999966",
+                "#003300",
+                "#CC0000",
+                "#993333",
+                "#009933"
 
+            ] } );
 
- You can download the iot-visualization project zip and use the above guidelines to customize the graphs to change the visualization.
+ This instantiates the graph and set the intial renderer to line.
 
-[node.js]:http://nodejs.org
-[jQuery]:http://jquery.com
-[express]:http://expressjs.com
-[Rickshaw]:http://code.shutterstock.com/rickshaw/
-[MQTT paho client]:http://www.eclipse.org/paho/clients/js/
-[recipe]:https://developer.ibm.com/iot/recipes/visualize-data/
-# dashboardAdminInsight
+        
+          this.drawGraph = function(seriesData)
+          {
+            // instantiate our graph!
+            this.palette = palette;
+            if(document.getElementById("chart") != null){
+              this.graph = new Rickshaw.Graph( {
+                element: document.getElementById("chart"),
+                width: 600,
+                height: 250,
+                renderer: 'line',
+                stroke: true,
+                preserve: true,
+                series: seriesData  
+              } );
+            }else{
+              return null;
+            }
+          }
+
