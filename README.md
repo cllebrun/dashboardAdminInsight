@@ -7,11 +7,12 @@ Deploy the application:
     https://console.ng.bluemix.net
     
 2. Create a new Javascript web app on Bluemix, give it a unique name. (Create App -> Web application -> Javascript runtime)
+----------------------------------------------------------------------------
 3. Download this project from Git => "Download ZIP" on the right
 4. Unzipp this project
 5. Open the command line and go to the project folder you just unzipped (cd "location")
 6. Edit the manifest.yml file with the application that you have created in Bluemix. Modify the name and the host with the name you gave to your Bluemix application
-
+----------------------------------------------------------------------------
 
 7. Connect to Bluemix from the command line:
 
@@ -23,9 +24,9 @@ Deploy the application:
 
 9. Deploy your app:
 
-    cf push <your bluemix-application-name>
+    cf push
 
-10. Access your app: <your bluemix-application-name>.mybluemix.net
+10. Access your app: your bluemix-application-name.mybluemix.net
  
 
 
