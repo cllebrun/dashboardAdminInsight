@@ -147,13 +147,13 @@ var RealtimeGraph = function(){
 				}else if((j == 'v_bat') || (j == 'State')) {
 					if(document.getElementById('voltage_b') != null ){ //home page
 						if(j == 'v_bat'){
-							document.getElementById('voltage_b').innerHTML = (data.d[j]/1000)*3;
+							document.getElementById('voltage_b').innerHTML = ((data.d[j]/1000)*3).toFixed(1);
 						}
 						
 					}
 					if(document.getElementById('charge') != null ){ // Energy production page
 						if(j == 'v_bat'){
-							document.getElementById('charge').innerHTML = (((data.d[j]/1000)*3)*100)/27;
+							document.getElementById('charge').innerHTML = ((((data.d[j]/1000)*3)*100)/270).toFixed(1);
 						}else if(j == 'State'){
 							if(data.d[j]=='1'){ // A verifier lamp allumée
 								document.getElementById('lamp').innerHTML = "Turned On";
@@ -173,13 +173,13 @@ var RealtimeGraph = function(){
 					document.getElementById('intensity').innerHTML = data.d[j];
 					i=data.d[j];
 				}else if((j == 'v_vphoto') && (document.getElementById('voltage') != null)){
-					document.getElementById('voltage').innerHTML = data.d[j]/1000;
+					document.getElementById('voltage').innerHTML = (data.d[j]/1000).toFixed(1);
 					v=data.d[j]/1000;
 				}
 			}
 		}
 		if(document.getElementById('power_s') != null){
-			document.getElementById('power_s').innerHTML = i*v;
+			document.getElementById('power_s').innerHTML = (i*v).toFixed(1);
 		}
 		
 		
