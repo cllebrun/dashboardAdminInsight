@@ -1,31 +1,39 @@
-IOT Dashboard Admin for Insight
-==================
-
-Deploy the application:
-
-1. Register to Bluemix:
+Deploy a Real-time IoT dashboard application (Node.js app) on Bluemix.
+1. Connect to Bluemix:
     https://console.ng.bluemix.net
     
-2. Create a new Javascript web app on Bluemix, give it a unique name. (Create App -> Web application -> Javascript runtime)
-
-3. Download this project from Git => "Download ZIP" on the right
-4. Unzipp this project
-5. Open the command line and locate to the project folder you just unzipped (ex: cd downloads/yourproject)
-6. Open and Edit the manifest.yml file with the application that you have created in Bluemix. Modify the name and the host with the name you gave to your Bluemix application
-
-7. Connect to Bluemix from the command line:
+2. Create a new Javascript web app on Bluemix:
+- On the dashboard, click on "Create App"
+- Choose  "Web" app
+- Choose the "SDK for Node.js" runtime
+- Click "Continue"
+- Give your application a name (it has to be unique)
+- Wait for your application to be started
+3. Download the project from Git:
+- Browse https://github.com/cllebrun/dashboardAdminInsight
+- Click on "Download ZIP" on the right of the page
+- Unzip the folder
+- Open the folder and the "manifest.yml" file and edit it to change the name and the host with the name you gave to the application you created on Bluemix.
+4. Push the app to Bluemix
+- Open the Command prompt and locate to the project folder you have just unzipped. (with cd command)
+- Connect to Bluemix using command line:
 
     cf api https://api.ng.bluemix.net
 
-8. Log into Bluemix:
+- Log into Bluemix using command line:
 
     cf login 
 
-9. Deploy your app:
+- Deploy your app to Bluemix:
 
     cf push
 
-10. Access your app: your-bluemix-application-name.mybluemix.net
+- Wait for your app to be started
+- Access your app: <your-bluemix-application-name.mybluemix>.net
+
+    Visualize the data from the Urban Light data on your real-time dashbord app !
+
+
  
 
 
