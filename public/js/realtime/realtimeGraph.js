@@ -125,7 +125,7 @@ var RealtimeGraph = function(){
 		{
 			if (typeof data.d[j] !== 'string') {
 				if((j == 'Loudness') && (document.getElementById('loudness')!= null)){
-					document.getElementById('loudness').innerHTML = data.d[j].toFixed(3);
+					document.getElementById('loudness').innerHTML = Math.round(data.d[j] *100) +" %";
 				}else if((j == 'Power') && (document.getElementById('power') != null)){
 					document.getElementById('power').innerHTML = data.d[j];
 				}else if((j == 'Light') && (document.getElementById('light') != null )){
